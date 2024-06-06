@@ -1,3 +1,4 @@
+# gazebo_params.yml
 gazebo:
   ros__parameters:
-    publish_rate: 400.0
+    publish_rate: 300.0
