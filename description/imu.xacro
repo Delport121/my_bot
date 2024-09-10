@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+    <!--IMU_MODEL____________________________________________________________________-->
+    <!--MATERIALS-->   
+    <!-- <xacro:_make_colour colour="Red" rgb="1 0 0"/> -->
+
+    <!--LINKS-->
+    <link name="imu_link">
+        <inertia>
+           <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="0.1" />
+            <inertia ixx="1" ixy="0.0" ixz="0.0" iyy="1" iyz="0.0" izz="1" /> 
+        </inertia>
+        <visual>
+            <geometry>
+                <cylinder radius="0.05" length="0.04" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="red" />
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.05" length="0.04" />
+            </geometry>
+        </collision>
+    </link>
+
+    <!--JOINTS-->
+    <joint name="base_imu_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="imu_link" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
+    <!--SENSOR-->
+    <gazebo reference="imu_link">
+        <gravity>true</gravity>
+        <sensor name="imu_sensor" type="imu">
+          <always_on>true</always_on>
+          <update_rate>100</update_rate>
+          <visualize>true</visualize>
+          <topic>__default_topic__</topic>
+          <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+            <topicName>imu</topicName>
+            <bodyName>imu_link</bodyName>
+            <updateRateHZ>10.0</updateRateHZ>
+            <gaussianNoise>0.0</gaussianNoise>
+            <xyzOffset>0 0 0</xyzOffset>
+            <rpyOffset>0 0 0</rpyOffset>
+            <frameName>imu_link</frameName>
+            <initialOrientationAsReference>false</initialOrientationAsReference>
+            <!-- <ros>
+                <remapping>${namespace}_imu_plugin/out:=/${namespace}_imu_plugin/out</remapping>
+            </ros> -->
+          </plugin>
+          <pose>0 0 0 0 0 0</pose>
+        </sensor>
+      </gazebo>
+
+    
+
+
+
+</robot>

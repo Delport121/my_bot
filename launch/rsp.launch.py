@@ -21,6 +21,10 @@ def generate_launch_description():
     xacro_file = os.path.join(pkg_path,'description','robot.urdf.xacro')
 
     robot_description_config = xacro.process_file(xacro_file)
+    
+    if not os.path.exists(xacro_file):
+        raise FileNotFoundError(f"Xacro file '{xacro_file}' does not exist.")
+
 
     #robot_description_config = xacro.process_file(xacro_file).toxml()
     # robot_description_config = Command(['xacro ', xacro_file, ' use_ros2_control:=', use_ros2_control])
