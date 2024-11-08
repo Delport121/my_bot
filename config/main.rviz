@@ -5,12 +5,7 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
-        - /TF1
         - /TF1/Tree1
-        - /TF1/Tree1/odom1
-        - /TF1/Tree1/odom1/base_link1
-        - /RobotModel1/Links1
-        - /RobotModel1/Links1/imu_link1
       Splitter Ratio: 0.5
     Tree Height: 525
   - Class: rviz_common/Selection
@@ -30,7 +25,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: PointCloud2
+    SyncSource: LaserScan
 Visualization Manager:
   Class: ""
   Displays:
@@ -95,10 +90,10 @@ Visualization Manager:
                   {}
               caster_wheel:
                 {}
+              imu_link:
+                {}
               laser_frame:
                 {}
-            imu_link:
-              {}
             left_wheel:
               {}
             right_wheel:
@@ -202,12 +197,12 @@ Visualization Manager:
       Channel Name: intensity
       Class: rviz_default_plugins/PointCloud2
       Color: 255; 255; 255
-      Color Transformer: RGB8
+      Color Transformer: Intensity
       Decay Time: 0
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 4096
+      Max Intensity: 0
       Min Color: 0; 0; 0
       Min Intensity: 0
       Name: PointCloud2
@@ -222,15 +217,15 @@ Visualization Manager:
         Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /camera/points
+        Value: /laser_controller/out
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 5.231388568878174
-        Min Value: -2.057955741882324
+        Max Value: 11.29992961883545
+        Min Value: -8.050139427185059
         Value: true
       Axis: X
       Channel Name: intensity
@@ -389,7 +384,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: odom
+    Fixed Frame: map #map
     Frame Rate: 30
   Name: root
   Tools:
@@ -432,25 +427,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 2.7886924743652344
+      Distance: 13.587775230407715
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 1.3622108697891235
-        Y: 0.65450119972229
-        Z: -0.25444620847702026
+        X: 0.14763016998767853
+        Y: 0.42746198177337646
+        Z: 1.4005789756774902
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: -0.004601701162755489
+      Pitch: 0.5153980851173401
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.580397129058838
+      Yaw: 3.130397081375122
     Saved: ~
 Window Geometry:
   Displays:

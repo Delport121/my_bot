@@ -29,7 +29,7 @@
 
     <!--JOINTS-->
     <joint name="base_imu_joint" type="fixed">
-        <parent link="base_link" />
+        <parent link="chassis" />
         <child link="imu_link" />
         <origin xyz="0 0 0" rpy="0 0 0" />
     </joint>

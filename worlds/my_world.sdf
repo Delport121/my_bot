@@ -7,7 +7,7 @@
     gz topic -e -t /model/diff_drive/odometry
     ros2 topic echo /model/diff_drive/odometry
 -->
-<sdf version="1.8">
+<sdf version="1.7">
   <world name="sensor_world">
     <physics name="1ms" type="ignored">
         <max_step_size>0.001</max_step_size>
