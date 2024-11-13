@@ -42,7 +42,7 @@ bridge:
     scan_beams: 1080
 
     # map parameters
-    map_path: '/home/ruan/dev_ws/src/my_bot/maps/aut'
+    map_path: '/home/ruan/dev_ws/src/my_bot/worlds/racetracks/Test_box'
     map_img_ext: '.png'
 
     # opponent parameters

@@ -33,9 +33,9 @@ def generate_launch_description():
     )
     
     # Include the Gazebo launch file, provided by the gazebo_ros package
-    custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'aut.world')
+    # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'mco.world')
     # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'empty.world')
-    # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Square_curve.world')
+    custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Square_curve.world')
     # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Circle_object.world')
     # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Smooth_curve.world')
     
@@ -145,7 +145,7 @@ def generate_launch_description():
         diff_drive_spawner,
         joint_broad_spawner,
         rviz_node,
-        map_server_node,
-        nav_lifecycle_node,
+        # map_server_node,
+        # nav_lifecycle_node,
         static_tf_node
     ])

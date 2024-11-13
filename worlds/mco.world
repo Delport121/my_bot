@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <sdf version="1.5">
   <world name="default">
     <!-- A global light source -->
@@ -11,22 +11,32 @@
     </include>
     <!-- Custom mesh model -->
     <model name="my_mesh">
-      <pose>-15 5.4  0 0 0</pose>
+      <pose>-15 5.4 0 0 0</pose>
       <static>true</static>
       <link name="body">
-          <!-- Visual element to display the mesh -->
-          <visual name="visual">
-              <geometry>
-                  <mesh><uri>file:///home/ruan/dev_ws/src/my_bot/worlds/racetracks/mco.stl</uri></mesh>
-              </geometry>
-          </visual>
-          <!-- Collision element for lidar detection -->
-          <collision name="collision">
-              <geometry>
-                  <mesh><uri>file:///home/ruan/dev_ws/src/my_bot/worlds/racetracks/mco.stl</uri></mesh>
-              </geometry>
-          </collision>
+        <!-- Visual element to display the mesh -->
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>file:///home/ruan/dev_ws/src/my_bot/worlds/racetracks/mco.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <!-- Collision element for lidar detection -->
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>file:///home/ruan/dev_ws/src/my_bot/worlds/racetracks/mco.stl</uri>
+            </mesh>
+          </geometry>
+        </collision>
       </link>
     </model>
+    <!-- Add the model state publisher plugin -->
+    <plugin name="model_state_publisher" filename="libgazebo_ros_state.so">
+      <ros>
+        <namespace>/</namespace>
+      </ros>
+    </plugin>
   </world>
 </sdf>
