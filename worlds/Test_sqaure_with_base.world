@@ -17,13 +17,15 @@
           <!-- Visual element to display the mesh -->
           <visual name="visual">
               <geometry>
-                  <mesh><uri>file:///home/ruan/dev_ws/src/my_bot/worlds/custom_worlds/Square_with_curves.stl</uri></mesh>
+                  <mesh><uri>file:///home/ruan/dev_ws/src/my_bot/worlds/custom_worlds/Test_square_with_base.stl</uri></mesh>
+                  <scale>0.001 0.001 0.001</scale>
               </geometry>
           </visual>
           <!-- Collision element for lidar detection -->
           <collision name="collision">
               <geometry>
-                  <mesh><uri>file:///home/ruan/dev_ws/src/my_bot/worlds/custom_worlds/Square_with_curves.stl</uri></mesh>
+                  <mesh><uri>file:///home/ruan/dev_ws/src/my_bot/worlds/custom_worlds/Test_square_with_base.stl</uri></mesh>
+                  <scale>0.001 0.001 0.001</scale>
               </geometry>
           </collision>
       </link>
