@@ -36,6 +36,8 @@ def generate_launch_description():
     # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'mco.world')
     # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Test_square.world')
     custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Test_square_with_base.world')
+    # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Test_square_simple.world')
+    # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Test_square_simple_simple.world')
     # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Smooth_curve.world')
     # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Corridor_with_room.world')
     
