@@ -34,22 +34,22 @@
             <ray>
                 <scan>
                     <horizontal>
-                        <samples>360</samples>
+                        <samples>1800</samples>          <!-- VLP-16 1800 / Other 360--> 
                         <resolution>1</resolution>
-                        <min_angle>-3.14</min_angle>
-                        <max_angle>3.14</max_angle>
+                        <min_angle>-3.14159</min_angle>
+                        <max_angle>3.14159</max_angle>
                     </horizontal>
                     <vertical>
-                        <samples>90</samples>
+                        <samples>16</samples>           <!-- VLP-16 16 / Other 90-->
                         <resolution>1</resolution>
-                        <min_angle>-0.785</min_angle>
-                        <max_angle>0.785</max_angle>
+                        <min_angle>-0.2618</min_angle>   <!-- VLP-16 -0.2618 / Other -0.785 -->
+                        <max_angle>0.2618</max_angle>    <!-- VLP-16 +0.2618 / Other +0.785)-->
                     </vertical>
                 </scan>
                 <range>
-                    <min>0.07</min> <!-- 0.35 (Original)-->
-                    <max>12</max>
-                    <resolution>0.03</resolution>
+                    <min>0.1</min> <!-- VLP-16 0.1)-->
+                    <max>100</max>   <!-- VLP-16 100)-->
+                    <resolution>0.01</resolution>
                 </range>
             </ray>
             <plugin name="laser_controller" filename="libgazebo_ros_ray_sensor.so">

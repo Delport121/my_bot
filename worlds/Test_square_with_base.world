@@ -33,7 +33,6 @@
       </link>
     </model>
 
-
     <!-- Add the model state publisher plugin -->
     <plugin name="model_state_publisher" filename="libgazebo_ros_state.so">
       <ros>

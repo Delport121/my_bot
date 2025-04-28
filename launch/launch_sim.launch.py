@@ -40,6 +40,7 @@ def generate_launch_description():
     # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Test_square_simple_simple.world')
     # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Smooth_curve.world')
     # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Corridor_with_room.world')
+    # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'mine.world')
     
 
     gazebo_params_path = os.path.join(get_package_share_directory(package_name), 'config', 'gazebo_params.yaml')
@@ -83,6 +84,7 @@ def generate_launch_description():
 
     # RViz node - start immediately
     rviz_config_path = os.path.join(get_package_share_directory('my_bot'), 'config', 'main.rviz')
+    print(rviz_config_path)
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',

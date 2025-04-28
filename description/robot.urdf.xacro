@@ -11,13 +11,18 @@
     </xacro:unless> -->
 
     <xacro:include filename="robot_core.xacro" />
+    <!-- <xacro:include filename="husky_core.xacro" /> -->
    
     <!-- <xacro:include filename="gazebo_control.xacro"/> -->
     <xacro:include filename="ros2_control.xacro"/>
-    <xacro:include filename="lidar2D.xacro" />
-    <!-- <xacro:include filename="lidar3D.xacro" /> -->
-    <!-- <xacro:include filename="imu.xacro" /> -->
+    <!-- <xacro:include filename="ros2_control_husky.xacro"/> -->
+
+
+    <!-- <xacro:include filename="lidar2D.xacro" /> -->
+    <xacro:include filename="lidar3D.xacro" />
+    <!-- <xacro:include filename="lidar_VLP16.xacro" /> -->
+    <xacro:include filename="imu.xacro" />
     <!-- <xacro:include filename="depth_camera.xacro" /> -->
-     <!-- <xacro:include filename="camera.xacro" /> -->
+    <!-- <xacro:include filename="camera.xacro" /> -->
 
 </robot>

@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+    <xacro:include filename="inertial_macros.xacro"/>
+
+    <!-- Setup colours -->
+
+    <material name="white">
+        <color rgba="1 1 1 1" />
+    </material>
+
+     <material name="yellow">
+        <color rgba="1 1 0 1"/>
+    </material>
+
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>
+
+    <material name="red">
+        <color rgba="1 0 0 1"/>
+    </material>
+
+    <!-- BASE LINK -->
+
+    <link name="base_link">
+
+    </link>
+
+    <!-- BASE_FOOTPRINT LINK -->
+
+    <joint name="base_footprint_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="base_footprint"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <link name="base_footprint">
+    </link>
+
+
+    <!-- CHASSIS LINK -->
+    <!-- Chassis link set at back of robot so (car length - wheel radius/2 = 0.77m) from base link which is also centre of front wheel diff drive-->
+    <joint name="chassis_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis"/>
+        <origin xyz="-0.46 0 0"/>
+    </joint>
+
+    <!-- move visual origin to middle lenght and height -->
+    <link name="chassis">
+        <visual>
+            <origin xyz="0.46 0 0.12"/>
+            <geometry>
+                <box size="0.92 0.38 0.24"/>
+            </geometry>
+            <material name="yellow"/>
+        </visual>
+        <collision>
+            <origin xyz="0.46 0 0.12"/>
+            <geometry>
+                <box size="0.92 0.38 0.24"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_box mass="20.0" x="0.92" y="0.38" z="0.24">
+            <origin xyz="0.46 0 0.12" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <!-- Let gazebo know what colours are used -->
+    <gazebo reference="chassis">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+    
+    <!-- LEFT FRONT (DRIVE) WHEEL LINK -->
+
+    <joint name="left_front_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_front_wheel"/>
+        <origin xyz="0.31 0.24 0" rpy="-${pi/2} 0 0" />
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="left_front_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.15" length="0.1"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.15" length="0.1"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="1.0" length="0.1" radius="0.15">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="left_front_wheel">
+        <material>Gazebo/Black</material>
+        <mu1>1.5</mu1>
+        <mu2>0.2</mu2>
+        <!-- <kp>200000.0</kp> -->
+        <!-- <kd>5000.0</kd> -->
+        <!-- <minDepth>0.002</minDepth> -->
+        <!-- <maxVel>0.3</maxVel> -->
+        <fdir1>1 0 0</fdir1>
+    </gazebo>
+
+    <!-- RIGHT FRONT (DRIVE) WHEEL LINK -->
+
+    <joint name="right_front_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_front_wheel"/>
+        <origin xyz="0.31 -0.24 0" rpy="${pi/2} 0 0" />
+        <axis xyz="0 0 -1"/>
+    </joint>
+
+    <link name="right_front_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.15" length="0.1"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.15" length="0.1"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="1.0" length="0.1" radius="0.15">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="right_front_wheel">
+        <material>Gazebo/Black</material>
+        <mu1>1.5</mu1>
+        <mu2>0.2</mu2>
+        <!-- <kp>200000.0</kp> -->
+        <!-- <kd>5000.0</kd> -->
+        <!-- <minDepth>0.002</minDepth> -->
+        <!-- <maxVel>0.3</maxVel> -->
+        <fdir1>1 0 0</fdir1>
+    </gazebo>
+
+    <!-- LEFT REAR WHEEL LINK -->
+    <!-- TEMPORARY FIX FOR BACK WHEEL JOINT STATES - MADE JOINT TYPE FIXED. CHNAGE TO CONTINUOUS ONCE ERROR FIXED -->
+    <joint name="left_rear_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_rear_wheel"/>
+        <origin xyz="-0.31 0.24 0" rpy="-${pi/2} 0 0" />
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="left_rear_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.15" length="0.1"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.15" length="0.1"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="1.0" length="0.1" radius="0.15">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <!-- Make rear wheels slide with super low friction (and spherical collisions) coefficient to allow front wheel diff drive -->
+    <gazebo reference="left_rear_wheel">
+        <material>Gazebo/Black</material>
+        <mu1>1.5</mu1>
+        <mu2>0.2</mu2>
+        <!-- <kp>200000.0</kp> -->
+        <!-- <kd>5000.0</kd> -->
+        <!-- <minDepth>0.002</minDepth> -->
+        <!-- <maxVel>0.3</maxVel> -->
+        <fdir1>1 0 0</fdir1>
+    </gazebo>
+
+    <!-- RIGHT REAR WHEEL LINK -->
+    <!-- TEMPORARY FIX FOR BACK WHEEL JOINT STATES - MADE JOINT TYPE FIXED. CHNAGE TO CONTINUOUS ONCE ERROR FIXED -->
+    <joint name="right_rear_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_rear_wheel"/>
+        <origin xyz="-0.31 -0.24 0" rpy="${pi/2} 0 0" />
+        <axis xyz="0 0 -1"/>
+    </joint>
+
+    <link name="right_rear_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.15" length="0.1"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.15" length="0.1"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="1.0" length="0.1" radius="0.15">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="right_rear_wheel">
+        <material>Gazebo/Black</material>
+        <mu1>1.5</mu1>
+        <mu2>0.2</mu2>
+        <!-- <kp>200000.0</kp> -->
+        <!-- <kd>5000.0</kd> -->
+        <!-- <minDepth>0.002</minDepth> -->
+        <!-- <maxVel>0.3</maxVel> -->
+        <fdir1>1 0 0</fdir1>
+    </gazebo>
+
+    <gazebo reference="base_link">
+        <mu1>0.000002</mu1>
+        <mu2>0.000002</mu2>
+        <!-- <material>Gazebo/Red</material> -->
+    </gazebo>
+    
+</robot>
