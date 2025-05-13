@@ -42,6 +42,7 @@
     <gazebo>
         <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
             <parameters>$(find my_bot)/config/my_controllers_husky.yaml</parameters>
+            <!-- <robot_param_node>my_bot</robot_param_node> -->
         </plugin>
     </gazebo>
 

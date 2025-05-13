@@ -11,12 +11,6 @@
     </include>
     <!-- Custom mesh model -->
 
-    <!-- Include custom SDF model -->
-    <include>
-      <name>Cave</name>
-      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Cave</uri>
-    </include>
-
     <!-- Add the model state publisher plugin -->
     <plugin name="model_state_publisher" filename="libgazebo_ros_state.so">
       <ros>

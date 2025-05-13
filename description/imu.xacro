@@ -35,7 +35,7 @@
 
     <!--SENSOR-->
     <gazebo reference="imu_link">
-        <material>Gazebo/orange</material>
+        <material>Gazebo/Orange</material>
         <gravity>true</gravity>
         <sensor name="imu_sensor" type="imu">
             <always_on>true</always_on>

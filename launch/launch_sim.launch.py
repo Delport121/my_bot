@@ -6,17 +6,18 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 from launch.actions import TimerAction
 import yaml
+from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
 
     package_name = 'my_bot'  # <--- CHANGE ME
-
+    
     # Include robot state publisher
     rsp = IncludeLaunchDescription(PythonLaunchDescriptionSource(
         [os.path.join(get_package_share_directory(package_name), 'launch', 'rsp.launch.py')]),
         launch_arguments={'use_sim_time': 'true'}.items()
     )
-
+    
     # Set parameters for twist_mux
     twist_mux_params = os.path.join(get_package_share_directory(package_name), 'config', 'twist_mux.yaml') 
     twist_mux = Node(
@@ -36,13 +37,12 @@ def generate_launch_description():
     # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'mco.world')
     # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Test_square.world')
     custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Test_square_with_base.world')
-    # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Test_square_simple.world')
-    # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Test_square_simple_simple.world')
     # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Smooth_curve.world')
     # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Corridor_with_room.world')
-    # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'mine.world')
-    
-
+    # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'warehouse_obstacles')
+    # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', '2D_Test_square.world')
+    custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', '3D_Test_square.world')
+    # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', '3D_Test_square_complex.world')
     gazebo_params_path = os.path.join(get_package_share_directory(package_name), 'config', 'gazebo_params.yaml')
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')]),
@@ -69,19 +69,7 @@ def generate_launch_description():
         executable="spawner",
         arguments=["joint_broad"],
     )
-    rviz_config_path = os.path.join(get_package_share_directory('my_bot'), 'config', 'main.rviz')
-    rviz_node = Node(
-        package='rviz2',
-        executable='rviz2',
-        name='rviz',
-        arguments=['-d', rviz_config_path]
-    )
-    # Load the YAML config path
-    config_path = os.path.join(get_package_share_directory('my_bot'), 'config', 'sim.yaml')
-    # Load the YAML configuration file
-    with open(config_path, 'r') as file:
-        config_dict = yaml.safe_load(file)
-
+    
     # RViz node - start immediately
     rviz_config_path = os.path.join(get_package_share_directory('my_bot'), 'config', 'main.rviz')
     print(rviz_config_path)
@@ -94,6 +82,10 @@ def generate_launch_description():
     )
 
     # Map server node with delayed start to allow RViz to initialize first
+    config_path = os.path.join(get_package_share_directory('my_bot'), 'config', 'sim.yaml')
+    with open(config_path, 'r') as file:
+        config_dict = yaml.safe_load(file)
+        
     map_server_node = TimerAction(
         period=3.0,  # Delay to ensure RViz is fully initialized
         actions=[
@@ -138,7 +130,7 @@ def generate_launch_description():
         arguments=['0', '0', '0', '0', '0', '0', 'map', 'odom'], # <--- CHANGE ME <base_link>
         output='screen'
     )
-
+    
     # Launch all components
     return LaunchDescription([
         rsp,
@@ -151,5 +143,5 @@ def generate_launch_description():
         rviz_node,
         # map_server_node,
         # nav_lifecycle_node,
-        static_tf_node
+        # static_tf_node
     ])

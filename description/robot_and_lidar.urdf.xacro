@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="robot_and_lidar">
+    
+    <xacro:include filename="$(find ros2_control_lidarbot)/urdf/lidarbot_for_gazebo.urdf.xacro" />
+
+    <xacro:include filename="husky_core.xacro" />
+    <xacro:include filename="imu.xacro" />
+   
+    <xacro:include filename="$(find my_bot)/description/lidar_husky_control_gazebo.xacro" />
+
+
+    <joint name="husky_lidar_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="lidarbot_base_footprint"/>
+        <origin xyz="0 0 0.25"/>
+    </joint>
+
+    <xacro:lidar_husky_gazebo_control name="husky_lidar" prefix="lidarbot_"/>
+
+    
+</robot>

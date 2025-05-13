@@ -11,19 +11,23 @@
     </include>
     <!-- Custom mesh model -->
     <model name="my_mesh">
-      <pose>0 0 0 0 0 1.570796327</pose> <!--y = 910*0.5-7.7 -->
+      <pose>0 0 -0.1 0 0 1.570796327</pose> <!--y = 910*0.5-7.7 -->
       <static>true</static>
       <link name="body">
           <!-- Visual element to display the mesh -->
           <visual name="visual">
               <geometry>
-                  <mesh><uri>file:///home/ruan/dev_ws/src/my_bot/worlds/custom_worlds/Test_square.stl</uri></mesh>
+                  <mesh><uri>file:///home/ruan/dev_ws/src/my_bot/worlds/custom_worlds/3D_Test_square.stl</uri>
+                    <!-- <scale>0.001 0.001 0.001</scale> -->
+                  </mesh>
               </geometry>
           </visual>
           <!-- Collision element for lidar detection -->
           <collision name="collision">
               <geometry>
-                  <mesh><uri>file:///home/ruan/dev_ws/src/my_bot/worlds/custom_worlds/Test_square.stl</uri></mesh>
+                  <mesh><uri>file:///home/ruan/dev_ws/src/my_bot/worlds/custom_worlds/3D_Test_square.stl</uri>
+                    <!-- <scale>0.001 0.001 0.001</scale> -->
+                  </mesh>
               </geometry>
           </collision>
       </link>
