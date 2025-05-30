@@ -36,13 +36,14 @@ def generate_launch_description():
     # Include the Gazebo launch file, provided by the gazebo_ros package
     # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'mco.world')
     # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Test_square.world')
-    custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Test_square_with_base.world')
+    # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Test_square_with_base.world')
     # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Smooth_curve.world')
     # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'Corridor_with_room.world')
     # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'warehouse_obstacles')
     # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', '2D_Test_square.world')
-    custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', '3D_Test_square.world')
-    # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', '3D_Test_square_complex.world')
+    # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', '3D_Test_square.world')
+    custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', '3D_Test_square_complex.world')
+    # custom_world_path = os.path.join(get_package_share_directory(package_name), 'worlds', 'empty.world')
     gazebo_params_path = os.path.join(get_package_share_directory(package_name), 'config', 'gazebo_params.yaml')
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')]),
@@ -71,7 +72,7 @@ def generate_launch_description():
     )
     
     # RViz node - start immediately
-    rviz_config_path = os.path.join(get_package_share_directory('my_bot'), 'config', 'main.rviz')
+    rviz_config_path = os.path.join(get_package_share_directory('my_bot'), 'config', 'lidar_3d.rviz')
     print(rviz_config_path)
     rviz_node = Node(
         package='rviz2',
@@ -128,6 +129,7 @@ def generate_launch_description():
         executable='static_transform_publisher',
         name='static_tf_map_to_base',
         arguments=['0', '0', '0', '0', '0', '0', 'map', 'odom'], # <--- CHANGE ME <base_link>
+        # arguments=['0', '0', '0', '0', '0', '0', 'odom', 'base_link'], # <--- CHANGE ME <base_link>
         output='screen'
     )
     
@@ -143,5 +145,5 @@ def generate_launch_description():
         rviz_node,
         # map_server_node,
         # nav_lifecycle_node,
-        # static_tf_node
+        static_tf_node
     ])

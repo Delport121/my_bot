@@ -5,6 +5,7 @@
 
     <xacro:include filename="husky_core.xacro" />
     <xacro:include filename="imu.xacro" />
+    <xacro:include filename="lidar2D.xacro" />
    
     <xacro:include filename="$(find my_bot)/description/lidar_husky_control_gazebo.xacro" />
 

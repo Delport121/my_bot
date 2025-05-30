@@ -16,7 +16,7 @@
     <joint name="velodyne_base_mount_joint" type="fixed">
         <parent link="base_link" />
         <child link="velodyne_base_link" />
-        <origin xyz="0.4 0 0.5" rpy="0 0 0" />
+        <origin xyz="0.0 0 0.5" rpy="0 0 0" />
     </joint>
 
     <!-- <link name="velodyne_base_link">
